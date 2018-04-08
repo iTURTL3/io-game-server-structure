@@ -62,7 +62,6 @@ module.exports = function(config, data, utilities, sockets) {
       player.update = function() {
          player.updateCoordinates();
       };
-      data.players.push(player);
       return player;
    };
    return self;
