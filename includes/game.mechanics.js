@@ -45,24 +45,22 @@ module.exports = function(config, data, utilities, sockets) {
       player.socketId      = socketId;
       player.id            = utilities.nextId(data.players);
       player.viewDirection = utilities.randomRadiansAngle(0, 360);
+      player.moveDirection = null;
+      player.speed         = 1;
       player.x             = 0;
       player.y             = 0;
       player.score         = 0;
-      player.day           = 1;
       player.send          = function(name, value) {
          sockets.to(player.socketId).emit(name, value);
       };
-      player.updateScore = function(amount) {
-         player.score += amount;
-      };
-      player.updateDay = function() {
-         if ( player.day <= Math.floor((data.loopNow - player.spawned) / config.dayDifference) ) {
-            player.updateScore(config.dayBonus);
-            ++player.day;
+      player.updateCoordinates = function() {
+         if ( player.moveDirection !== null ) {
+            player.x += (Math.cos(player.moveDirection) * player.speed) * data.loopDelta;
+            player.y += (Math.sin(player.moveDirection) * player.speed) * data.loopDelta;
          }
       };
       player.update = function() {
-         player.updateDay();
+         player.updateCoordinates();
       };
       data.players.push(player);
       return player;
