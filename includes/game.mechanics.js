@@ -4,7 +4,7 @@
 ********************************************************
 */
 module.exports = function(config, data, utilities, sockets) {
-   var self  = {};
+   var self  = this;
    self.loop = function() {
       self.updateDelta();
       self.updateGameTime();
@@ -64,5 +64,4 @@ module.exports = function(config, data, utilities, sockets) {
       };
       return player;
    };
-   return self;
 };
