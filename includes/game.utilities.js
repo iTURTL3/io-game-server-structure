@@ -4,7 +4,7 @@
 ********************************************************
 */
 module.exports = function() {
-   var self         = {};
+   var self         = this;
    self.PI          = Math.PI;
    self.PIR         = self.PI / 180;
    self.randomFloat = function(min, max) {
@@ -84,5 +84,4 @@ module.exports = function() {
       });
       return min;
    };
-   return self;
 };
