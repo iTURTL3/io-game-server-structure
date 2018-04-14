@@ -7,11 +7,11 @@ module.exports = function(sockets) {
    var self     = {};
    self.sockets = sockets;
    self.start   = function() {
-      self.config    = require('./game.config.js')();
-      self.data      = require('./game.data.js')();
-      self.utilities = require('./game.utilities.js')();
-      self.mechanics = require('./game.mechanics.js')(self.config, self.data, self.utilities, self.sockets);
-      self.callbacks = require('./game.callbacks.js')(self.config, self.data, self.utilities, self.mechanics, self.sockets);
+      self.config    = new (require('./game.config.js'))();
+      self.data      = new (require('./game.data.js'))();
+      self.utilities = new (require('./game.utilities.js'))();
+      self.mechanics = new (require('./game.mechanics.js'))(self.config, self.data, self.utilities, self.sockets);
+      self.callbacks = new (require('./game.callbacks.js'))(self.config, self.data, self.utilities, self.mechanics, self.sockets);
       self.interval  = setInterval(self.mechanics.loop, self.config.updateRate);
    };
    self.stop = function() {
