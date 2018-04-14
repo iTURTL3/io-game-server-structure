@@ -4,7 +4,7 @@
 ********************************************************
 */
 module.exports = function() {
-   var self         = {};
+   var self         = this;
    self.serverStart = Date.now();
    self.loopLast    = Date.now();
    self.loopNow     = Date.now();
@@ -12,5 +12,4 @@ module.exports = function() {
    self.gameTime    = [];
    self.leaderboard = [];
    self.players     = [];
-   return self;
 };
