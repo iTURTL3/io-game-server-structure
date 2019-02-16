@@ -2,5 +2,7 @@
 
 this is just a small structure I reuse on my io games.
 
-## dependencies
-<b>socket.io</b>
+## Dependencies
+```
+npm install socket.io
+```
